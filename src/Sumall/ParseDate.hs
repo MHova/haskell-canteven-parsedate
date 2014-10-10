@@ -6,7 +6,7 @@ date formats.
 module Sumall.ParseDate (
     parseDate,
     supportedDateFormats,
-    iso8601UtcDateFormat
+    iso8601UtcDateFormats
 ) where
 
 import Data.Maybe(mapMaybe, listToMaybe)
@@ -34,27 +34,26 @@ parseDate str =
     The list of supported date formats.
     currently:
 
-    > [
-    >     rfc822DateFormat,
-    >     iso8601UtcDateFormat
-    > ]
+    > rfc822DateFormat:iso8601UtcDateFormats
 
     See also 'rfc822DateFormat'.
 -}
 supportedDateFormats :: [String]
 supportedDateFormats =
-    [
-        rfc822DateFormat,
-        iso8601UtcDateFormat
-    ]
+    rfc822DateFormat:iso8601UtcDateFormats
 
-{- |
-    The actual format is @\"%FT%T%z\"@
-    
-    Example: @2014-07-18T12:01:57-0800@
--}
-iso8601UtcDateFormat :: String
-iso8601UtcDateFormat = "%FT%T%z" -- 2014-07-18T12:01:57-0800
+
+iso8601UtcDateFormats :: [String]
+iso8601UtcDateFormats =
+  [
+      "%Y-%m-%dT%H:%M:%S%z", -- 2014-07-18T12:01:57-0800
+      "%Y-%m-%dT%H:%M:%S",
+      "%Y-%m-%dT%H:%M",
+      "%Y-%m-%dT%H",
+      "%Y-%m-%d",
+      "%Y-%m",
+      "%Y"
+  ]
 
 
 -- Private Types --------------------------------------------------------------
