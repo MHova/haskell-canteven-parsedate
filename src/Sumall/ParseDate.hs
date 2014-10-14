@@ -46,8 +46,8 @@ supportedDateFormats =
 iso8601UtcDateFormats :: [String]
 iso8601UtcDateFormats =
   [
-      "%Y-%m-%dT%H:%M:%S%z", -- 2014-07-18T12:01:57-0800
-      "%Y-%m-%dT%H:%M:%S",
+      "%Y-%m-%dT%H:%M:%S%Q%Z", -- 2014-07-18T12:01:57-0800
+      "%Y-%m-%dT%H:%M:%S%Q",
       "%Y-%m-%dT%H:%M",
       "%Y-%m-%dT%H",
       "%Y-%m-%d",
