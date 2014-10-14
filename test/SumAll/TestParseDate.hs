@@ -4,7 +4,8 @@ import Sumall.ParseDate (parseDate)
 import Distribution.TestSuite (Test(..), TestInstance(..), Progress(..), Result(..))
 
 tests :: IO [Test]
-tests = return [Group "timezone tests for ISO8601 format" True [testZulu, testFourDigitTZ, test8601StyleTz]]
+tests = return [Group "timezone tests for ISO8601 format" True [testZulu, testFourDigitTZ, test8601StyleTz],
+                Group "fractional second tests" True [testFracSecond]]
 
 testZulu = Test $ defaultTest {
   run = return $ Finished $ tryParse "2014-10-01T21:13:00Z",
@@ -19,6 +20,11 @@ testFourDigitTZ = Test $ defaultTest {
 test8601StyleTz = Test $ defaultTest {
   run = return $ Finished $ tryParse "2014-10-01T21:13:00+04:00",
   name = "parsing with ISO8601-style hh:mm tz (\"+04:00\")"
+  }
+
+testFracSecond = Test $ defaultTest {
+  run = return $ Finished $ tryParse "2014-10-01T21:13:00.000Z",
+  name = "parsing fractional seconds"
   }
 
 defaultTest = TestInstance {
