@@ -2,7 +2,7 @@
 -- documentation, see http://haskell.org/cabal/users-guide/
 
 name:                sumall-parsedate
-version:             0.3.1.0
+version:             0.4.0.0
 synopsis:            Some date parsing utilities.
 -- description:         
 homepage:            http://sumall.com
@@ -17,7 +17,7 @@ build-type:          Simple
 cabal-version:       >=1.10
 
 library
-  exposed-modules:     Sumall.ParseDate
+  exposed-modules:     SumAll.ParseDate
   -- other-modules:       
   -- other-extensions:    
   build-depends:
