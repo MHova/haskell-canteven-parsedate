@@ -1,6 +1,6 @@
 module SumAll.TestParseDate ( tests ) where
 
-import Sumall.ParseDate (parseDate)
+import SumAll.ParseDate (parseDate)
 import Distribution.TestSuite (Test(..), TestInstance(..), Progress(..), Result(..))
 
 tests :: IO [Test]
