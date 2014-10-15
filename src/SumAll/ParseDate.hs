@@ -3,7 +3,7 @@ This module wraps `Date.Time.Format` and provides a handy way to parse a date
 string who's format is unknown, but which may be one of several "supported"
 date formats.
 -}
-module Sumall.ParseDate (
+module SumAll.ParseDate (
     parseDate,
     supportedDateFormats,
     iso8601UtcDateFormats
