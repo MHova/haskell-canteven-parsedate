@@ -6,7 +6,8 @@ date formats.
 module SumAll.ParseDate (
     parseDate,
     supportedDateFormats,
-    iso8601UtcDateFormats
+    iso8601UtcDateFormats,
+    twitterDateFormat
 ) where
 
 import Data.Maybe(mapMaybe, listToMaybe)
@@ -40,7 +41,7 @@ parseDate str =
 -}
 supportedDateFormats :: [String]
 supportedDateFormats =
-    rfc822DateFormat:iso8601UtcDateFormats
+    rfc822DateFormat:iso8601UtcDateFormats ++ [twitterDateFormat]
 
 
 iso8601UtcDateFormats :: [String]
@@ -55,6 +56,8 @@ iso8601UtcDateFormats =
       "%Y"
   ]
 
+twitterDateFormat :: String
+twitterDateFormat = "%a %b %d %T %Z %Y"
 
 -- Private Types --------------------------------------------------------------
 -- Private Functions ----------------------------------------------------------
