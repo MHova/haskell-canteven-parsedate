@@ -6,7 +6,8 @@ import Distribution.TestSuite (Test(..), TestInstance(..), Progress(..), Result(
 tests :: IO [Test]
 tests = return [Group "timezone tests for ISO8601 format" True [testZulu, testFourDigitTZ, test8601StyleTz],
                 Group "Twitter format tests" True [testTwitterBasic, testTwitterWithTZ],
-                Group "fractional second tests" True [testFracSecond]]
+                Group "fractional second tests" True [testFracSecond],
+                Group "epoch time tests" True [testEpochTime]]
 
 testZulu = Test $ defaultTest {
   run = return $ Finished $ tryParse "2014-10-01T21:13:00Z",
@@ -36,6 +37,11 @@ testTwitterBasic = Test $ defaultTest {
 testTwitterWithTZ = Test $ defaultTest {
   run = return $ Finished $ tryParse "Fri Aug 21 21:48:25 -0200 2009",
   name = "parsing Twitter with a tz"
+  }
+  
+testEpochTime = Test $ defaultTest {
+  run = return $ Finished $ tryParse "1414180021",
+  name = "parsing epoch time"
   }
 
 defaultTest = TestInstance {
