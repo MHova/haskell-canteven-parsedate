@@ -59,6 +59,9 @@ iso8601UtcDateFormats =
 twitterDateFormat :: String
 twitterDateFormat = "%a %b %d %T %Z %Y"
 
+{- |
+    In seconds since Jan 1, 1970
+-}
 epochFormat :: String
 epochFormat = "%s"
 
