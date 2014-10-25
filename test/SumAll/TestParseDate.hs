@@ -41,9 +41,9 @@ testTwitterWithTZ = Test $ defaultTest {
   run = return $ Finished $ "Fri Aug 21 21:48:25 -0200 2009" `parseEquals` "2009-08-21T23:48:25",
   name = "parsing Twitter with a tz"
   }
-  
+
 testEpochTime = Test $ defaultTest {
-  run = return $ Finished $ tryParse "1414180021",
+  run = return $ Finished $ "1414180021" `parseEquals` "2014-10-24T19:47:01",
   name = "parsing epoch time"
   }
 
