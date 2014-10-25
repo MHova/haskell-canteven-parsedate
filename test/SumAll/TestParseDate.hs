@@ -55,11 +55,6 @@ defaultTest = TestInstance {
   setOption = \_ _ -> Right defaultTest  -- FIXME
   }
 
-tryParse :: String -> Result
-tryParse s = case parseDate s of
-  Just t -> Pass
-  Nothing -> Fail $ "couldn't parse " ++ s
-
 parseEquals :: String -> String -> Result
 parseEquals src dest = case parseDate src of
   Nothing -> Fail $ "couldn't parse " ++ show src
