@@ -1,7 +1,10 @@
 module SumAll.TestParseDate ( tests ) where
 
 import SumAll.ParseDate (parseDate)
+import Data.Time.Clock (UTCTime)
+import Data.Time.Format (formatTime)
 import Distribution.TestSuite (Test(..), TestInstance(..), Progress(..), Result(..))
+import System.Locale (defaultTimeLocale, iso8601DateFormat)
 
 tests :: IO [Test]
 tests = return [Group "timezone tests for ISO8601 format" True [testZulu, testFourDigitTZ, test8601StyleTz],
@@ -10,37 +13,37 @@ tests = return [Group "timezone tests for ISO8601 format" True [testZulu, testFo
                 Group "epoch time tests" True [testEpochTime]]
 
 testZulu = Test $ defaultTest {
-  run = return $ Finished $ tryParse "2014-10-01T21:13:00Z",
+  run = return $ Finished $ "2014-10-01T21:13:00Z" `parseEquals` "2014-10-01T21:13:00",
   name = "parsing with Zulu suffix (\"Z\")"
   }
 
 testFourDigitTZ = Test $ defaultTest {
-  run = return $ Finished $ tryParse "2014-10-01T21:13:00+0400",
+  run = return $ Finished $ "2014-10-01T21:13:00+0400" `parseEquals` "2014-10-01T17:13:00",
   name = "parsing with RFC822-style four-digit tz (\"+0400\")"
   }
 
 test8601StyleTz = Test $ defaultTest {
-  run = return $ Finished $ tryParse "2014-10-01T21:13:00+04:00",
+  run = return $ Finished $ "2014-10-01T21:13:00+04:00" `parseEquals` "2014-10-01T17:13:00",
   name = "parsing with ISO8601-style hh:mm tz (\"+04:00\")"
   }
 
 testFracSecond = Test $ defaultTest {
-  run = return $ Finished $ tryParse "2014-10-01T21:13:00.000Z",
+  run = return $ Finished $ "2014-10-01T21:13:00.000Z" `parseEquals` "2014-10-01T21:13:00",
   name = "parsing fractional seconds"
   }
 
 testTwitterBasic = Test $ defaultTest {
-  run = return $ Finished $ tryParse "Fri Aug 21 21:48:25 +0000 2009",
+  run = return $ Finished $ "Fri Aug 21 21:48:25 +0000 2009" `parseEquals` "2009-08-21T21:48:25",
   name = "parsing Twitter's basic format"
   }
 
 testTwitterWithTZ = Test $ defaultTest {
-  run = return $ Finished $ tryParse "Fri Aug 21 21:48:25 -0200 2009",
+  run = return $ Finished $ "Fri Aug 21 21:48:25 -0200 2009" `parseEquals` "2009-08-21T23:48:25",
   name = "parsing Twitter with a tz"
   }
-  
+
 testEpochTime = Test $ defaultTest {
-  run = return $ Finished $ tryParse "1414180021",
+  run = return $ Finished $ "1414180021" `parseEquals` "2014-10-24T19:47:01",
   name = "parsing epoch time"
   }
 
@@ -52,7 +55,12 @@ defaultTest = TestInstance {
   setOption = \_ _ -> Right defaultTest  -- FIXME
   }
 
-tryParse :: String -> Result
-tryParse s = case parseDate s of
-  Just t -> Pass
-  Nothing -> Fail $ "couldn't parse " ++ s
+parseEquals :: String -> String -> Result
+parseEquals src dest = case parseDate src of
+  Nothing -> Fail $ "couldn't parse " ++ show src
+  Just t -> case renderDate t == dest of
+    False -> Fail $ "parsed string " ++ show src ++ " wasn't the same as " ++ show dest ++ ": got " ++ show (renderDate t)
+    True -> Pass
+
+renderDate :: UTCTime -> String
+renderDate = formatTime defaultTimeLocale $ iso8601DateFormat $ Just "%H:%M:%S"
