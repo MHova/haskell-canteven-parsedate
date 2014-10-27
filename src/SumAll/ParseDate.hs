@@ -41,7 +41,7 @@ parseDate str =
 -}
 supportedDateFormats :: [String]
 supportedDateFormats =
-    rfc822DateFormat:iso8601UtcDateFormats ++ [twitterDateFormat] ++ [epochFormat]
+    rfc822DateFormat:twitterDateFormat:epochFormat:iso8601UtcDateFormats
 
 
 iso8601UtcDateFormats :: [String]
