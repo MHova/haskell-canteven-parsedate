@@ -52,8 +52,7 @@ iso8601UtcDateFormats =
       "%Y-%m-%dT%H:%M",
       "%Y-%m-%dT%H",
       "%Y-%m-%d",
-      "%Y-%m",
-      "%Y"
+      "%Y-%m"
   ]
 
 twitterDateFormat :: String
