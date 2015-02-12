@@ -31,9 +31,10 @@ Test-Suite test-parsedate
   type: detailed-0.9
   hs-source-dirs: test
   test-module: SumAll.TestParseDate
+  -- FIXME. WTF is going on with the time library
   build-depends:
     base,
-    time >= 1.4.2 && < 1.5,    -- FIXME. WTF is going on with this library
+    time >= 1.4.2 && < 1.5,
     Cabal>=1.20,
     sumall-parsedate,
     old-locale
