@@ -33,7 +33,7 @@ Test-Suite test-parsedate
   test-module: SumAll.TestParseDate
   build-depends:
     base,
-    time,
+    time >= 1.4.2 && < 1.5,    -- FIXME. WTF is going on with this library
     Cabal>=1.20,
     sumall-parsedate,
     old-locale
