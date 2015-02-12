@@ -12,7 +12,7 @@ module SumAll.ParseDate (
 
 import Data.Maybe(mapMaybe, listToMaybe)
 import Data.Time.Clock (UTCTime)
-import Data.Time.Format (parseTime)
+import Data.Time.Format (ParseTime, parseTime)
 import System.Locale (rfc822DateFormat, defaultTimeLocale)
 
 -- Public Types ---------------------------------------------------------------
@@ -24,7 +24,7 @@ import System.Locale (rfc822DateFormat, defaultTimeLocale)
     specific set of date formats known is defined below by
     `supportedDateFormats`
 -}
-parseDate :: String -> Maybe UTCTime
+parseDate :: (ParseTime t) => String -> Maybe t
 parseDate str =
     parseAll supportedDateFormats
     where
