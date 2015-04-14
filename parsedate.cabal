@@ -1,12 +1,11 @@
-name:                sumall-parsedate
+name:                parsedate
 version:             0.5.1.0
-synopsis:            Some date parsing utilities.
+synopsis:            Date / time parsing utilities that try to guess the date / time format.
 -- description:         
-homepage:            http://sumall.com
 license:             Apache-2.0
 license-file:        LICENSE
-author:              Rick Owens
-maintainer:          rowens@sumall.com
+author:              Rick Owens, Alex Babkin
+maintainer:          rowens@sumall.com, ababkin@sumall.com
 -- copyright:           
 -- category:            
 build-type:          Simple
@@ -14,8 +13,8 @@ build-type:          Simple
 cabal-version:       >=1.10
 
 library
-  exposed-modules:     SumAll.ParseDate,
-    SumAll.ParseDate.Types
+  exposed-modules:     System.Time.ParseDateTime,
+    System.Time.ParseDateTime.Types
   -- other-modules:       
   -- other-extensions:    
   build-depends:
@@ -29,12 +28,12 @@ library
 Test-Suite test-parsedate
   type: detailed-0.9
   hs-source-dirs: test
-  test-module: SumAll.TestParseDate
+  test-module: TestParseDate
   -- FIXME. WTF is going on with the time library
   build-depends:
     base,
     time >= 1.4.2 && < 1.5,
     Cabal>=1.20,
-    sumall-parsedate,
+    parsedate,
     old-locale,
     timezone-series

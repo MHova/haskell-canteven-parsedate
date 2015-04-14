@@ -3,17 +3,17 @@ This module wraps `Date.Time.Format` and provides a handy way to parse a date
 string who's format is unknown, but which may be one of several "supported"
 date formats.
 -}
-module SumAll.ParseDate (
+module System.Time.ParseDateTime (
     parseDate,
     supportedDateFormats,
     iso8601UtcDateFormats,
     twitterDateFormat
 ) where
 
-import Data.Maybe(mapMaybe, listToMaybe)
-import Data.Time.Clock (UTCTime)
-import Data.Time.Format (ParseTime, parseTime)
-import System.Locale (rfc822DateFormat, defaultTimeLocale)
+import           Data.Maybe       (listToMaybe, mapMaybe)
+import           Data.Time.Clock  (UTCTime)
+import           Data.Time.Format (ParseTime, parseTime)
+import           System.Locale    (defaultTimeLocale, rfc822DateFormat)
 
 -- Public Types ---------------------------------------------------------------
 -- Semi-Public Types ----------------------------------------------------------
