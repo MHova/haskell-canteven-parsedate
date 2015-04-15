@@ -1,10 +1,12 @@
-module SumAll.TestParseDate ( tests ) where
+module System.Time.TestParseDateTime ( tests ) where
 
-import SumAll.ParseDate (parseDate)
-import Data.Time.Clock (UTCTime)
-import Data.Time.Format (formatTime)
-import Distribution.TestSuite (Test(..), TestInstance(..), Progress(..), Result(..))
-import System.Locale (defaultTimeLocale, iso8601DateFormat)
+import           Data.Time.Clock           (UTCTime)
+import           Data.Time.Format          (formatTime)
+import           Distribution.TestSuite    (Progress (..), Result (..),
+                                            Test (..), TestInstance (..))
+import           System.Locale             (defaultTimeLocale,
+                                            iso8601DateFormat)
+import           System.Time.ParseDateTime (parseDate)
 
 tests :: IO [Test]
 tests = return [Group "timezone tests for ISO8601 format" True [testZulu, testFourDigitTZ, test8601StyleTz],
