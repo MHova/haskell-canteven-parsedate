@@ -19,8 +19,8 @@ library
   -- other-extensions:    
   build-depends:
     base,
-    time,
     old-locale,
+    time,
     timezone-series
   hs-source-dirs:      src
   default-language:    Haskell2010
@@ -31,9 +31,9 @@ Test-Suite test-parsedate
   test-module: TestParseDate
   -- FIXME. WTF is going on with the time library
   build-depends:
-    base,
-    time >= 1.4.2 && < 1.5,
     Cabal>=1.20,
-    parsedate,
+    base,
     old-locale,
+    parsedate,
+    time >= 1.4.2 && < 1.5,
     timezone-series
