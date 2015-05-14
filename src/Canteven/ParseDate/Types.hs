@@ -1,6 +1,6 @@
 {-# LANGUAGE NamedFieldPuns #-}
 
-module System.Time.ParseDateTime.Types (
+module Canteven.ParseDate.Types (
   LocalTimeAndOffset(..),
   ltaoInTimeZone
 ) where
