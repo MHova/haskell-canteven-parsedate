@@ -1,14 +1,13 @@
 {-# LANGUAGE NamedFieldPuns #-}
 
 module System.Time.ParseDateTime.Types (
-    LocalTimeAndOffset(..), ltaoInTimeZone
-    ) where
+  LocalTimeAndOffset(..),
+  ltaoInTimeZone
+) where
 
-import           Data.Time                           (ParseTime (buildTime))
-import           Data.Time.LocalTime                 (LocalTime, TimeZone,
-                                                      localTimeToUTC)
-import           Data.Time.LocalTime.TimeZone.Series (TimeZoneSeries,
-                                                      utcToLocalTime')
+import Data.Time (ParseTime (buildTime))
+import Data.Time.LocalTime (LocalTime, TimeZone, localTimeToUTC)
+import Data.Time.LocalTime.TimeZone.Series (TimeZoneSeries, utcToLocalTime')
 
 -- | A data type for parsing ISO8601 and distinguishing between with-offset or
 -- without-offset formats.
