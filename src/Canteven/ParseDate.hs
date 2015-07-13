@@ -15,10 +15,6 @@ import Data.Time.Clock (UTCTime)
 import Data.Time.Format (ParseTime, parseTime)
 import System.Locale (defaultTimeLocale, rfc822DateFormat)
 
--- Public Types ---------------------------------------------------------------
--- Semi-Public Types ----------------------------------------------------------
--- Public Functions -----------------------------------------------------------
-
 {- |
     Parses a date string. Returns `Nothing` if the string cannot be parsed. The
     specific set of date formats known is defined below by
@@ -63,8 +59,5 @@ twitterDateFormat = "%a %b %d %T %Z %Y"
 -}
 epochFormat :: String
 epochFormat = "%s"
-
--- Private Types --------------------------------------------------------------
--- Private Functions ----------------------------------------------------------
 
 
