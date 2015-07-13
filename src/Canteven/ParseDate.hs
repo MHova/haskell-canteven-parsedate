@@ -11,7 +11,6 @@ module Canteven.ParseDate (
 ) where
 
 import Data.Maybe (listToMaybe, mapMaybe)
-import Data.Time.Clock (UTCTime)
 import Data.Time.Format (ParseTime, parseTimeM, defaultTimeLocale)
 import System.Locale (rfc822DateFormat)
 

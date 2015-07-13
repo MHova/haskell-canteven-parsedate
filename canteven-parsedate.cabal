@@ -25,6 +25,7 @@ library
     timezone-series
   hs-source-dirs:      src
   default-language:    Haskell2010
+  ghc-options: -Wall
 
 Test-Suite test-parsedate
   type: detailed-0.9
@@ -39,3 +40,4 @@ Test-Suite test-parsedate
     time >=1.5 && < 1.6,
     timezone-series
   default-language:    Haskell2010
+  ghc-options: -Wall
