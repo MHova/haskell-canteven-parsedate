@@ -12,8 +12,8 @@ module Canteven.ParseDate (
 
 import Data.Maybe (listToMaybe, mapMaybe)
 import Data.Time.Clock (UTCTime)
-import Data.Time.Format (ParseTime, parseTime)
-import System.Locale (defaultTimeLocale, rfc822DateFormat)
+import Data.Time.Format (ParseTime, parseTimeM, defaultTimeLocale)
+import System.Locale (rfc822DateFormat)
 
 {- |
     Parses a date string. Returns `Nothing` if the string cannot be parsed. The
@@ -25,7 +25,7 @@ parseDate str =
     parseAll supportedDateFormats
     where
         parseAll fmts = listToMaybe (mapMaybe parse fmts)
-        parse fmt = parseTime defaultTimeLocale fmt str
+        parse fmt = parseTimeM True defaultTimeLocale fmt str
 
 {- |
     The list of supported date formats.

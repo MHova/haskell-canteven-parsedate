@@ -2,10 +2,10 @@ module Canteven.TestParseDate ( tests ) where
 
 import Canteven.ParseDate (parseDate)
 import Data.Time.Clock (UTCTime)
-import Data.Time.Format (formatTime)
+import Data.Time.Format (defaultTimeLocale, formatTime)
 import Distribution.TestSuite (Progress (..), Result (..), Test (..),
   TestInstance (..))
-import System.Locale (defaultTimeLocale, iso8601DateFormat)
+import System.Locale (iso8601DateFormat)
 
 tests :: IO [Test]
 tests = return [Group "timezone tests for ISO8601 format" True [testZulu, testFourDigitTZ, test8601StyleTz],
