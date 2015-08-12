@@ -2,12 +2,15 @@
 
 module Canteven.ParseDate.Types (
   LocalTimeAndOffset(..),
-  ltaoInTimeZone
+  ltaoInTimeZone,
+  ltaoInTimeZoneTZ
 ) where
 
-import Data.Time (ParseTime (buildTime))
+import Data.Time (UTCTime, ParseTime (buildTime))
 import Data.Time.LocalTime (LocalTime, TimeZone, localTimeToUTC)
 import Data.Time.LocalTime.TimeZone.Series (TimeZoneSeries, utcToLocalTime')
+import Data.Time.Zones (TZ, utcToLocalTimeTZ)
+
 
 -- | A data type for parsing ISO8601 and distinguishing between with-offset or
 -- without-offset formats.
@@ -33,12 +36,20 @@ instance ParseTime LocalTimeAndOffset where
 
 -- | Get the localtime represented by this LTAO in the given timezone.
 ltaoInTimeZone :: TimeZoneSeries -> LocalTimeAndOffset -> LocalTime
+ltaoInTimeZone = ltaoInTimeZoneConvert utcToLocalTime'
+
+-- | same as @ltaoInTimeZone@ but for TZ
+ltaoInTimeZoneTZ :: TZ -> LocalTimeAndOffset -> LocalTime
+ltaoInTimeZoneTZ = ltaoInTimeZoneConvert utcToLocalTimeTZ
+
+
+
+ltaoInTimeZoneConvert :: (a -> UTCTime -> LocalTime) -> a -> LocalTimeAndOffset -> LocalTime
 -- If the LTAO doesn't specify an offset, it must be local time, so just use it
 -- directly.
-ltaoInTimeZone _ LocalTimeAndOffset { ltaoLocalTime,
-                                      ltaoOffset = Nothing } = ltaoLocalTime
+ltaoInTimeZoneConvert _ _ (LocalTimeAndOffset lTime Nothing) = lTime
 -- Otherwise, this LTAO specifies a UTCTime, so convert that UTCTime to LocalTime.
-ltaoInTimeZone tz LocalTimeAndOffset { ltaoLocalTime, ltaoOffset = Just offset } =
-    utcToLocalTime' tz utc
+ltaoInTimeZoneConvert convert tz (LocalTimeAndOffset lTime (Just off)) =
+    convert tz utc
   where
-    utc = localTimeToUTC offset ltaoLocalTime
+    utc = localTimeToUTC off lTime
