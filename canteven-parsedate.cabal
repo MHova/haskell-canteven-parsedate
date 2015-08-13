@@ -1,5 +1,5 @@
 name:                canteven-parsedate
-version:             1.0.1.0
+version:             1.0.1.1
 synopsis:            Date / time parsing utilities that try to guess the date / time format.
 -- description:         
 license:             Apache-2.0
