@@ -19,9 +19,9 @@ library
   -- other-modules:       
   -- other-extensions:    
   build-depends:
-    base,
+    base >=4.7 && <4.9,
     old-locale,
-    time >=1.5 && < 1.6,
+    time >=1.4.2 && < 1.6,
     timezone-series,
     tz
   hs-source-dirs:      src
@@ -38,7 +38,7 @@ Test-Suite test-parsedate
     base,
     canteven-parsedate,
     old-locale,
-    time >=1.5 && < 1.6,
+    time >=1.4.2 && < 1.6,
     timezone-series,
     tz
   default-language:    Haskell2010
