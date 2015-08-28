@@ -11,8 +11,7 @@ module Canteven.ParseDate (
 ) where
 
 import Data.Maybe (listToMaybe, mapMaybe)
-import Data.Time.Format (ParseTime, parseTimeM, defaultTimeLocale)
-import System.Locale (rfc822DateFormat)
+import Data.Time.Format (rfc822DateFormat, ParseTime, parseTimeM, defaultTimeLocale)
 
 {- |
     Parses a date string. Returns `Nothing` if the string cannot be parsed. The
