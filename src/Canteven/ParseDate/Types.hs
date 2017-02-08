@@ -21,8 +21,9 @@ data LocalTimeAndOffset = LocalTimeAndOffset {
 
 instance ParseTime LocalTimeAndOffset where
     buildTime l xs =
-        LocalTimeAndOffset (buildTime l $ filter (not . isZoneInfo) xs)
-            maybeZone
+        case buildTime l $ filter (not . isZoneInfo) xs of
+          Nothing -> Nothing
+          Just localTime -> Just (LocalTimeAndOffset localTime maybeZone)
       where
         -- Apparently "%Z" matches even the empty string and parses it as 00:00.
         -- "%z" might do this too but I haven't tested it.
@@ -32,7 +33,7 @@ instance ParseTime LocalTimeAndOffset where
         isZoneInfo _ = False
         zoneLetters = filter isZoneInfo xs
         maybeZone | null zoneLetters = Nothing
-                  | otherwise = Just $ buildTime l zoneLetters
+                  | otherwise = buildTime l zoneLetters
 
 -- | Get the localtime represented by this LTAO in the given timezone.
 ltaoInTimeZone :: TimeZoneSeries -> LocalTimeAndOffset -> LocalTime
