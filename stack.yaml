@@ -3,5 +3,4 @@ extra-package-dbs: []
 packages:
 - '.'
 extra-deps:
-- tz-0.1.2.1
-resolver: lts-7.18
+resolver: lts-12.0
